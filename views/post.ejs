@@ -4,10 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f8b500, #fceabb, #f7c1c0, #e83a77);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .navbar {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    p {
+      color: #555;
+    }
+
+    .btn-secondary {
+      background-color: #e83a77;
+      border: none;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #c32f62;
+    }
+  </style>
 </head>
 <body>
-  <h1><%= title %></h1>
-  <p><%= content %></p>
-  <a href="/">Back to Home</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">My Blog</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/compose">Compose</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container mt-4">
+    <h1><%= title %></h1>
+    <p><%= content %></p>
+    <a href="/" class="btn btn-secondary">Back to Home</a>
+  </div>
 </body>
 </html>

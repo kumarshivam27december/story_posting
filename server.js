@@ -64,7 +64,7 @@ app.get('/posts/:postId', async (req, res) => {
 });
 
 // Start Server
-const port = process.env.PORT || 3001;
+const port = 5000 || 3001 || 3000||10000;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
