@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
+  <title><%= post.title %></title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       background: linear-gradient(135deg, #f8b500, #fceabb, #f7c1c0, #e83a77);
       background-size: 400% 400%;
       animation: gradientAnimation 15s ease infinite;
-      height: 100vh;
+      height: 100%;
       margin: 0;
       display: flex;
       flex-direction: column;
@@ -51,13 +51,24 @@
     .btn-secondary:hover {
       background-color: #c32f62;
     }
+
+    .nav-link {
+      color: #333 !important;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+      color: #e83a77 !important;
+    }
   </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">My Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
         </li>
@@ -68,9 +79,12 @@
     </div>
   </nav>
   <div class="container mt-4">
-    <h1><%= title %></h1>
-    <p><%= content %></p>
+    <h1><%= post.title %></h1>
+    <p><%= post.content %></p>
     <a href="/" class="btn btn-secondary">Back to Home</a>
   </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

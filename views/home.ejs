@@ -5,25 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
   <style>
     body {
-      background: linear-gradient(135deg, #ffcc33, #ff33cc);
-      background-attachment: fixed;
+      background: linear-gradient(135deg, #f8b500, #fceabb, #f7c1c0, #e83a77);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
       height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
     }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .navbar {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
     .container {
-      background-color: rgba(255, 255, 255, 0.8); /* Slight white background for readability */
+      background-color: rgba(255, 255, 255, 0.9);
       padding: 20px;
       border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    p {
+      color: #555;
+    }
+
+    .btn-primary {
+      background-color: #e83a77;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #c32f62;
+    }
+
+    .nav-link {
+      color: #333 !important;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+      color: #e83a77 !important;
     }
   </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">My Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
         </li>
@@ -34,19 +78,19 @@
     </div>
   </nav>
   <div class="container mt-4">
-    <div class="row">
-      <% posts.forEach(function(post){ %>
-        <div class="col-md-4">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h5 class="card-title"><%= post.title %></h5>
-              <p class="card-text"><%= post.content.substring(0, 100) %>...</p>
-              <a href="/posts/<%= post._id %>" class="btn btn-primary">Read More</a>
-            </div>
-          </div>
+    <h1>Home</h1>
+    <% posts.forEach(post => { %>
+      <div class="card mt-3">
+        <div class="card-body">
+          <h2 class="card-title"><%= post.title %></h2>
+          <p class="card-text"><%= post.content.substring(0, 100) %>...</p>
+          <a href="/posts/<%= post._id %>" class="btn btn-primary">Read More</a>
         </div>
-      <% }); %>
-    </div>
+      </div>
+    <% }) %>
   </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
