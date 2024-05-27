@@ -79,18 +79,14 @@
   </nav>
   <div class="container mt-4">
     <h1>Home</h1>
-    <% posts.forEach(post => { %>
-      <div class="card mt-3">
-        <div class="card-body">
-          <h2 class="card-title"><%= post.title %></h2>
-          <p class="card-text"><%= post.content.substring(0, 100) %>...</p>
-          <a href="/posts/<%= post._id %>" class="btn btn-primary">Read More</a>
-        </div>
+    <% posts.forEach(function(post) { %>
+      <div class="post">
+        <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
+        <p><%= post.content.substring(0, 100) %>...</p>
+        <a href="/posts/<%= post._id %>" class="btn btn-primary">Read More</a>
       </div>
+      <hr>
     <% }) %>
   </div>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
