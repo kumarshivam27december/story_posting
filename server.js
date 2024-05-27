@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/blogDB');
+// mongoose.connect('mongodb://localhost:27017/blogDB');
+mongoose.connect('mongodb+srv://admin:admin@story.2nctmkl.mongodb.net/?retryWrites=true&w=majority&appName=story')
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
