@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://admin:admin@storypost.hmmrbew.mongodb.net/?retryWrites=true&w=majority&appName=storypost');
+mongoose.connect('mongodb+srv://admin:admin123@cluster0.7igts.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
 
 // Post schema
 const postSchema = new mongoose.Schema({
