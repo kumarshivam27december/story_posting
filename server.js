@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://admin:admin123@cluster0.7igts.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+mongoose.connect('mongodb+srv://admin:admin123@cluster0.7igts..net/?retryWrites=true&w=majority&appName=Cluster0');
 
 // Post schema
 const postSchema = new mongoose.Schema({
@@ -70,3 +70,5 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
+
+
