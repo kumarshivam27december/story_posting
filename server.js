@@ -30,10 +30,9 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login');
   }
 }
-//
-//mongodb+srv://admin:admin123@cluster0.7igts..net/?retryWrites=true&w=majority&appName=Cluster0
+
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://admin:admin123@cluster0.7igts..net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect('mongodb+srv://admin:admin12345@vlog.4iqvy.mongodb.net/?retryWrites=true&w=majority&appName=VLOG', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -44,7 +43,7 @@ mongoose.connect('mongodb+srv://admin:admin123@cluster0.7igts..net/?retryWrites=
 app.get('/', async (req, res) => {
   try {
     const posts = await Post.find({});
-    res.render('home', { posts: posts });
+    res.render('home', { posts: posts, user: req.session.user });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error loading posts");
@@ -95,9 +94,10 @@ app.get('/register', (req, res) => {
 
 app.post('/register', async (req, res) => {
   try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = new User({
       email: req.body.email,
-      password: req.body.password
+      password: hashedPassword
     });
     await user.save();
     res.redirect('/login');
