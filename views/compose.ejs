@@ -4,39 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compose</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(to right, #ff7e5f, #feb47b);
-      color: #333;
-      font-family: Arial, sans-serif;
-    }
-    .btn-primary {
-      background-color: #e83a77;
-      border: none;
-    }
-    .btn-primary:hover {
-      background-color: #c32f62;
-    }
-  </style>
 </head>
 <body>
-  <div class="container mt-4">
-    <div class="d-flex justify-content-end">
-      <a href="/" class="btn btn-secondary mr-2">Home</a>
-      <a href="/compose" class="btn btn-primary">Compose</a>
-    </div>
-    <form action="/compose" method="post" class="mt-4">
-      <div class="form-group">
-        <label for="postTitle">Title</label>
-        <input type="text" class="form-control" id="postTitle" name="postTitle" required>
-      </div>
-      <div class="form-group">
-        <label for="postContent">Content</label>
-        <textarea class="form-control" id="postContent" name="postContent" rows="10" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Publish</button>
-    </form>
-  </div>
+  <h1>Compose a New Story</h1>
+  <form action="/compose" method="POST">
+    <input type="text" name="postTitle" placeholder="Story Title" required>
+    <textarea name="postContent" placeholder="Story Content" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  
+  <a href="/">Back to Home</a>
+  
+  <% if (user) { %>
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+  <% } %>
 </body>
 </html>

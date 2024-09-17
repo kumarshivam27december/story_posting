@@ -1,32 +1,25 @@
-// models/User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// Define the schema for users
+// Define User schema
 const userSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  email: {
+    type: String,
+    required: true,
+    unique: true, // Ensures that no two users have the same email
+  },
+  password: {
+    type: String,
+    required: true,
+  },
 });
 
-// Hash password before saving the user
-userSchema.pre('save', async function(next) {
-  if (this.isModified('password')) {
-    try {
-      this.password = await bcrypt.hash(this.password, 10);
-      next();
-    } catch (err) {
-      next(err);
-    }
-  } else {
-    next();
-  }
-});
-
-// Method to compare passwords
-userSchema.methods.comparePassword = function(candidatePassword) {
+// Method to compare provided password with the hashed password in the database
+userSchema.methods.comparePassword = function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-// Create and export the model based on the schema
+// Create User model using the schema
 const User = mongoose.model('User', userSchema);
+
 module.exports = User;

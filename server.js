@@ -6,11 +6,11 @@ const bcrypt = require('bcrypt');
 
 const app = express();
 
-// Models
+// Import Models
 const Post = require('./models/Post'); // Adjust path as necessary
 const User = require('./models/User'); // Adjust path as necessary
 
-// Setup
+// Setup view engine and middlewares
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -50,15 +50,16 @@ app.get('/', async (req, res) => {
   }
 });
 
-// Compose route
+// Compose route (ensure that the post has an author)
 app.get('/compose', isAuthenticated, (req, res) => {
-  res.render('compose');
+  res.render('compose', { user: req.session.user });
 });
 
 app.post('/compose', isAuthenticated, async (req, res) => {
   const post = new Post({
     title: req.body.postTitle,
-    content: req.body.postContent
+    content: req.body.postContent,
+    author: req.session.user.email // Save the logged-in user's email as author
   });
 
   try {
@@ -70,14 +71,14 @@ app.post('/compose', isAuthenticated, async (req, res) => {
   }
 });
 
-// Post route
+// Post details route
 app.get('/posts/:postId', async (req, res) => {
   const requestedPostId = req.params.postId;
 
   try {
     const post = await Post.findOne({ _id: requestedPostId });
     if (post) {
-      res.render('post', { post: post });
+      res.render('post', { post: post, user: req.session.user });
     } else {
       res.status(404).send('Post not found');
     }
@@ -116,7 +117,7 @@ app.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (user && await user.comparePassword(req.body.password)) {
-      req.session.user = user;
+      req.session.user = user; // Set user in session
       res.redirect('/');
     } else {
       res.status(401).send('Invalid email or password');
@@ -135,7 +136,7 @@ app.get('/logout', (req, res) => {
 });
 
 // Server setup
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });

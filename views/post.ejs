@@ -4,31 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= post.title %></title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(to right, #ff7e5f, #feb47b);
-      color: #333;
-      font-family: Arial, sans-serif; 
-    }
-    .btn-primary {
-      background-color: #e83a77;
-      border: none;
-    }
-    .btn-primary:hover {
-      background-color: #c32f62;
-    }
-  </style>
 </head>
 <body>
-  <div class="container mt-4">
-    <div class="d-flex justify-content-end">
-      <a href="/" class="btn btn-secondary mr-2">Home</a>
-      <a href="/compose" class="btn btn-primary">Compose</a>
-    </div>
-    <h1 class="mt-4"><%= post.title %></h1>
-    <p><%= post.content %></p>
-    <a href="/" class="btn btn-secondary">Back to Home</a>
-  </div>
+  <h1><%= post.title %></h1>
+  <p><%= post.content %></p>
+  <p>By: <%= post.author %></p>
+  <p>Posted on: <%= post.date.toDateString() %></p>
+
+  <% if (user) { %>
+    <a href="/compose">Compose a New Story</a>
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+  <% } %>
+  
+  <a href="/">Back to Home</a>
 </body>
 </html>
