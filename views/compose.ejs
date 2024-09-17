@@ -4,22 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compose</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
-  <h1>Compose a New Story</h1>
-  <form action="/compose" method="POST">
-    <input type="text" name="postTitle" placeholder="Story Title" required>
-    <textarea name="postContent" placeholder="Story Content" required></textarea>
-    <button type="submit">Submit</button>
-  </form>
+  <div class="container mt-5">
+    <div class="form-container mx-auto col-md-6">
+      <h1 class="text-center text-primary">Compose a New Story</h1>
+      <form action="/compose" method="POST">
+        <div class="form-group">
+          <input type="text" name="postTitle" class="form-control" placeholder="Story Title" required>
+        </div>
+        <div class="form-group">
+          <textarea name="postContent" class="form-control" rows="5" placeholder="Story Content" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+      </form>
+      <div class="mt-3 text-center">
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+        <% if (user) { %>
+          <a href="/logout" class="btn btn-danger">Logout</a>
+        <% } else { %>
+          <a href="/login" class="btn btn-secondary">Login</a>
+          <a href="/register" class="btn btn-secondary">Register</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
   
-  <a href="/">Back to Home</a>
-  
-  <% if (user) { %>
-    <a href="/logout">Logout</a>
-  <% } else { %>
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
-  <% } %>
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
