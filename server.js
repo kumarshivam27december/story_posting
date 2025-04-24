@@ -32,7 +32,7 @@ function isAuthenticated(req, res, next) {
 }
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://admin:admin12345@vlog.4iqvy.mongodb.net/?retryWrites=true&w=majority&appName=VLOG', {
+mongoose.connect('mongodb+srv://admin:admin123@blog1.di9o5df.mongodb.net/?retryWrites=true&w=majority&appName=blog1', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
